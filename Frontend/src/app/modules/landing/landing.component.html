@@ -1,0 +1,118 @@
+<!-- La sección Hero se carga como un componente separado -->
+<app-hero></app-hero>
+
+<!-- Statistics Section: Adaptada a datos de Plick -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>+50.000</h3>
+        <p>Productos comparados cada día</p>
+      </div>
+      <div class="stat-card">
+        <h3>+15</h3>
+        <p>Supermercados líderes disponibles</p>
+      </div>
+      <div class="stat-card">
+        <h3>Hasta 30%</h3>
+        <p>De ahorro potencial en tu cesta mensual</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Supermarkets Section: Logos de supermercados -->
+<section class="quality-section" id="supermarkets">
+  <div class="container">
+    <div class="quality-content">
+      <h2>Comparamos precios en tus <span class="text-muted">supermercados favoritos</span></h2>
+      <p>Encuentra siempre la opción más económica para tu lista de la compra entre las cadenas más importantes.</p>
+    </div>
+    
+    <div class="partners">
+      <!-- Sustituye por los logos reales en /assets/images/plick/supermarkets/ -->
+      <img src="assets/images/plick/supermarkets/mercadona.svg" alt="Mercadona">
+      <img src="assets/images/plick/supermarkets/carrefour.svg" alt="Carrefour">
+      <img src="assets/images/plick/supermarkets/lidl.svg" alt="Lidl">
+      <img src="assets/images/plick/supermarkets/dia.svg" alt="Dia">
+      <img src="assets/images/plick/supermarkets/alcampo.svg" alt="Alcampo">
+    </div>
+  </div>
+</section>
+
+<!-- Features Section: Adaptada a las funcionalidades de Plick -->
+<section class="services-section" id="features">
+  <div class="container">
+    <h2>Una herramienta potente, <span class="text-muted">diseñada para hacerte la vida más fácil</span></h2>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Historial de Precios</h3>
+        <p>Consulta la evolución del precio de un producto para saber si es un buen momento para comprarlo.</p>
+      </div>
+       <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <h3>Listas de la Compra</h3>
+        <p>Crea tu lista y Plick te dirá dónde es más barato comprarla. ¡Ahorra en el total de tu cesta!</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔔</div>
+        <h3>Alertas de Ofertas</h3>
+        <p>No te pierdas ni una bajada de precio. Te avisamos cuando tus productos favoritos estén de oferta.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Escáner de Códigos</h3>
+        <p>¿En el súper? Escanea un código de barras y comprueba al instante si está más barato en otro sitio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial Section: Adaptada a un usuario de Plick -->
+<section class="problem-section">
+  <div class="container">
+    <div class="problem-content">
+      <div class="problem-left">
+        <div class="problem-card">
+          <h3>"¡Increíblemente útil!"</h3>
+          <p>"Desde que uso Plick, ahorro una media de 50€ al mes sin esfuerzo. Se ha convertido en una app imprescindible para mí antes de ir a hacer la compra. La recomiendo totalmente."</p>
+          <div class="author">
+            <strong>Ana G.</strong> - Usuaria de Plick en Madrid
+          </div>
+        </div>
+      </div>
+      <div class="problem-right">
+        <!-- Imagen de una persona feliz en su cocina con bolsas de compra -->
+        <img src="assets/images/plick/usuario-feliz.jpg" alt="Usuario feliz ahorrando con Plick">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="cta-content">
+      <div class="cta-left">
+        <h2>¿Listo para tomar el control de tus gastos?</h2>
+        <div class="cta-features">
+          <div class="feature">
+            <span class="checkmark">✓</span>
+            <span>Completamente gratis</span>
+          </div>
+          <div class="feature">
+            <span class="checkmark">✓</span>
+            <span>Actualizaciones de precios diarias</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cta-right">
+        <p>Únete a miles de personas que ya compran de forma inteligente. Regístrate en menos de un minuto y empieza a ahorrar hoy mismo.</p>
+        <a routerLink="/auth/register" class="cta-button-white">Crear mi cuenta gratis</a>
+      </div>
+    </div>
+  </div>
+</section>

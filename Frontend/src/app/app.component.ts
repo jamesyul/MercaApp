@@ -1,17 +1,19 @@
+// src/app/app.component.ts
 import { Component } from '@angular/core';
-//import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header/header.component'; // Ajusta la ruta si es diferente
-import { HeroComponent } from './hero/hero.component';       // Ajusta la ruta si es diferente
-import { FooterComponent } from './footer/footer.component';
+import { RouterOutlet } from '@angular/router'; // <-- ¡MUY IMPORTANTE!
+import { HeaderComponent } from './layout/header/header.component'; // <-- ¡IMPORTANTE!
+import { FooterComponent } from './layout/footer/footer.component'; // <-- ¡IMPORTANTE!
 
 @Component({
   selector: 'app-root',
-  //imports: [RouterOutlet],
   standalone: true,
-  imports: [HeaderComponent, HeroComponent, FooterComponent],
+  imports: [
+    RouterOutlet,      // <-- Debe estar aquí
+    HeaderComponent,   // <-- Debe estar aquí
+    FooterComponent    // <-- Debe estar aquí
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Frontend';
+  title = 'Plick';
 }

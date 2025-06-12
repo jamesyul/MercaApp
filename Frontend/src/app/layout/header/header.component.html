@@ -1,0 +1,32 @@
+<header class="header">
+  <nav class="navbar">
+    <div class="nav-content">
+      <!-- Logo -->
+      <a routerLink="/" class="logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-text">Plick</span>
+      </a>
+      
+      <!-- Navigation Menu -->
+      <ul class="nav-menu" [class.active]="isMenuOpen">
+        <li><a (click)="closeMenu()" href="#home" class="nav-link active">Inicio</a></li>
+        <li><a (click)="closeMenu()" href="#features" class="nav-link">Características</a></li>
+        <li><a (click)="closeMenu()" href="#supermarkets" class="nav-link">Supermercados</a></li>
+        <li><a (click)="closeMenu()" href="#contact" class="nav-link">Contacto</a></li>
+      </ul>
+      
+      <!-- CTA Buttons -->
+      <div class="nav-actions">
+        <a routerLink="/auth/login" class="login-btn">Iniciar Sesión</a>
+        <a routerLink="/auth/register" class="signup-btn">Regístrate Gratis</a>
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
