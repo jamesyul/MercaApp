@@ -1,0 +1,46 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="onContentClick($event)">
+    <button class="close-btn" (click)="onClose()"><i class="fas fa-times"></i></button>
+    
+    <div class="product-detail-grid">
+      <!-- Image Gallery -->
+      <div class="product-gallery">
+        <div class="main-image">
+          <img [src]="product.imageUrl" [alt]="product.name">
+        </div>
+        <!-- Thumbnails (simplificado) -->
+        <div class="thumbnails">
+          <img [src]="product.imageUrl" [alt]="product.name" class="active">
+          <img [src]="product.imageUrl" [alt]="product.name">
+          <img [src]="product.imageUrl" [alt]="product.name">
+        </div>
+      </div>
+      
+      <!-- Product Info -->
+      <div class="product-info">
+        <span class="info-brand">{{ product.brand }}</span>
+        <h1>{{ product.name }}</h1>
+        <div class="info-rating">
+          <span class="stars">{{ product.rating }} <i class="fas fa-star"></i></span>
+          <span class="reviews">{{ product.reviews }} reviews</span>
+        </div>
+        
+        <div class="info-price">
+          <span class="final-price">€{{ (product.price * (1 - product.discount / 100)).toFixed(2) }}</span>
+          <span class="original-price" *ngIf="product.discount > 0">€{{ product.price.toFixed(2) }}</span>
+          <span class="discount-badge" *ngIf="product.discount > 0">{{ product.discount }}% OFF</span>
+        </div>
+        
+        <div class="info-colors">
+          <label>Color: <span>Negro</span></label>
+          <div class="color-swatches">
+            <button *ngFor="let color of product.colors" [style.background-color]="color" [class.active]="color === '#000000'"></button>
+          </div>
+        </div>
+        
+        <button class="btn-primary">Ver oferta en Amazon</button>
+        <a href="#" class="more-deals-link">Ver más ofertas ></a>
+      </div>
+    </div>
+  </div>
+</div>

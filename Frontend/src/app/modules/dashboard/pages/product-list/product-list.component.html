@@ -1,0 +1,21 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Resultados de la Búsqueda</h1>
+    <p>Hemos encontrado {{ products.length }} productos para "zapatillas"</p>
+  </div>
+
+  <div class="product-grid">
+    <app-product-card 
+      *ngFor="let product of products"
+      [product]="product"
+      (viewProduct)="onViewProduct($event)">
+    </app-product-card>
+  </div>
+</div>
+
+<!-- El modal que se mostrará cuando un producto sea seleccionado -->
+<app-product-detail-modal
+  *ngIf="selectedProduct"
+  [product]="selectedProduct"
+  (closeModal)="onCloseModal()">
+</app-product-detail-modal>

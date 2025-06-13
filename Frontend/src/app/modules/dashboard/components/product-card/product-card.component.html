@@ -1,0 +1,19 @@
+<div class="card" (click)="onViewDetails()">
+  <div class="card-image-container">
+    <img [src]="product.imageUrl" [alt]="product.name">
+    <div class="discount-badge" *ngIf="product.discount > 0">-{{ product.discount }}%</div>
+  </div>
+  <div class="card-content">
+    <span class="card-brand">{{ product.brand }}</span>
+    <h3 class="card-title">{{ product.name }}</h3>
+    <div class="card-footer">
+      <div class="card-price">
+        <span class="final-price">€{{ (product.price * (1 - product.discount / 100)).toFixed(2) }}</span>
+        <span class="original-price" *ngIf="product.discount > 0">€{{ product.price.toFixed(2) }}</span>
+      </div>
+      <div class="card-rating">
+        <i class="fas fa-star"></i> {{ product.rating }}
+      </div>
+    </div>
+  </div>
+</div>

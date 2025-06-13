@@ -1,0 +1,33 @@
+<header class="app-header">
+  <div class="header-content">
+    <!-- Logo -->
+    <a routerLink="/" class="logo">
+      <span class="logo-text">Plick</span>
+    </a>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <form class="search-form" (submit)="onSearch($event)">
+        <i class="fas fa-search search-icon"></i>
+        <input type="search" name="search" placeholder="Busca productos, marcas o categorías...">
+        <button type="submit" class="search-btn">Buscar</button>
+      </form>
+    </div>
+
+    <!-- User Menu -->
+    <div class="user-menu-container">
+      <button class="user-avatar-btn" (click)="toggleUserMenu()">
+        <!-- Sustituir con la imagen real del usuario -->
+        <img src="https://i.pravatar.cc/40" alt="User Avatar">
+      </button>
+
+      <div class="user-dropdown" *ngIf="isUserMenuOpen">
+        <ul>
+          <li><a routerLink="/app/profile">Ver Perfil</a></li>
+          <li><a routerLink="/app/favorites">Favoritos</a></li>
+          <li><a routerLink="/auth/login">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

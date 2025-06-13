@@ -41,12 +41,17 @@ export const routes: Routes = [
     component: LandingComponent
   },
   {
-    // RUTA NUEVA: Carga perezosa del módulo de autenticación
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.routes').then(m => m.AUTH_ROUTES)
   },
   {
-    // Redirige cualquier ruta no encontrada a la página de inicio
+    // RUTA NUEVA: Carga perezosa del módulo del dashboard
+    path: 'app',
+    loadChildren: () => import('./modules/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES),
+    // En el futuro, aquí añadirás un AuthGuard para proteger la ruta
+    // canActivate: [authGuard] 
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
