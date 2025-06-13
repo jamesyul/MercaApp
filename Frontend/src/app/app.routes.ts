@@ -31,18 +31,22 @@ export const routes: Routes = [
 ];*/
 
 // src/app/app.routes.ts
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
-// PASO 1: Importa el LandingComponent directamente aquí
 import { LandingComponent } from './modules/landing/landing.component';
 
 export const routes: Routes = [
   {
-    // PASO 2: Reemplaza 'loadChildren' por 'component'
     path: '',
     component: LandingComponent
   },
-  // ... (las otras rutas pueden seguir comentadas)
   {
+    // RUTA NUEVA: Carga perezosa del módulo de autenticación
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.routes').then(m => m.AUTH_ROUTES)
+  },
+  {
+    // Redirige cualquier ruta no encontrada a la página de inicio
     path: '**',
     redirectTo: '',
     pathMatch: 'full'

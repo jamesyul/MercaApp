@@ -1,2 +1,48 @@
-/* Este código es el mismo que me enviaste, está perfecto */
-.header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(229,231,235,.5)}.navbar{padding:1rem 0}.nav-content{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 20px}.logo{display:flex;align-items:center;gap:8px;font-size:1.5rem;font-weight:700;color:#1f2937;text-decoration:none}.logo-icon{color:#10b981;font-size:1.2rem}.logo-text{color:#1f2937}.nav-menu{display:flex;list-style:none;gap:2rem;margin:0;padding:0}.nav-link{text-decoration:none;color:#6b7280;font-weight:500;font-size:.95rem;transition:color .3s ease;position:relative;cursor:pointer}.nav-link:hover,.nav-link.active{color:#10b981}.nav-link.active::after{content:'';position:absolute;bottom:-8px;left:0;right:0;height:2px;background:#10b981;border-radius:1px}.nav-actions{display:flex;align-items:center;gap:1rem}.login-btn{text-decoration:none;color:#6b7280;font-weight:500;padding:8px 16px;border-radius:6px;transition:all .3s ease}.login-btn:hover{color:#10b981;background:rgba(16,185,129,.1)}.signup-btn{text-decoration:none;background:#10b981;color:#fff;font-weight:600;padding:12px 24px;border-radius:8px;transition:all .3s ease;box-shadow:0 2px 8px rgba(16,185,129,.2)}.signup-btn:hover{background:#059669;transform:translateY(-1px);box-shadow:0 4px 12px rgba(16,185,129,.3)}.mobile-menu-toggle{display:none;flex-direction:column;gap:4px;background:0 0;border:none;cursor:pointer;padding:8px}.mobile-menu-toggle span{width:24px;height:2px;background:#374151;border-radius:1px;transition:all .3s ease}.mobile-menu-toggle.active span:first-child{transform:rotate(45deg) translate(6px,6px)}.mobile-menu-toggle.active span:nth-child(2){opacity:0}.mobile-menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}@media (max-width:768px){.nav-menu{position:fixed;top:70px;left:0;right:0;background:#fff;flex-direction:column;padding:2rem;gap:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,.1);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .3s ease}.nav-menu.active{transform:translateY(0);opacity:1;visibility:visible}.nav-actions{display:none}.mobile-menu-toggle{display:flex}.nav-content{padding:0 15px}}@media (max-width:480px){.logo{font-size:1.3rem}.nav-menu{top:65px;padding:1.5rem}}
+
+.header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(229,231,235,.5)}
+.navbar{padding:1rem 0}
+
+/* ESTA ES LA CLAVE: Flexbox distribuye los 2 bloques hijos (nav-left y nav-actions) a los extremos */
+.nav-content{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* NUEVA REGLA: El contenedor izquierdo también es un flexbox para alinear logo y menú */
+.nav-left {display:flex;align-items:center;gap:3rem} /* 3rem de espacio entre el logo y el menú */
+
+.logo{display:flex;align-items:center;font-size:1.5rem;font-weight:700;color:#1f2937;text-decoration:none}
+.logo-text{color:#1f2937}
+
+.nav-menu{display:flex;list-style:none;gap:2rem;margin:0;padding:0}
+.nav-link{text-decoration:none;color:#6b7280;font-weight:500;font-size:.95rem;transition:color .3s ease;position:relative;cursor:pointer}
+.nav-link:hover,.nav-link.active{color:#10b981}
+.nav-link.active::after{content:'';position:absolute;bottom:-8px;left:0;right:0;height:2px;background:#10b981;border-radius:1px}
+
+.nav-actions{display:flex;align-items:center;gap:1rem}
+.login-btn{text-decoration:none;color:#6b7280;font-weight:500;padding:8px 16px;border-radius:6px;transition:all .3s ease}
+.login-btn:hover{color:#10b981;background:rgba(16,185,129,.1)}
+.signup-btn{text-decoration:none;background:#10b981;color:#fff;font-weight:600;padding:12px 24px;border-radius:8px;transition:all .3s ease;box-shadow:0 2px 8px rgba(16,185,129,.2)}
+.signup-btn:hover{background:#059669;transform:translateY(-1px);box-shadow:0 4px 12px rgba(16,185,129,.3)}
+
+/* --- Estilos para el menú móvil (sin cambios, ya que ocultan .nav-menu y .nav-actions) --- */
+.mobile-menu-toggle{display:none;flex-direction:column;gap:4px;background:0 0;border:none;cursor:pointer;padding:8px}
+.mobile-menu-toggle span{width:24px;height:2px;background:#374151;border-radius:1px;transition:all .3s ease}
+.mobile-menu-toggle.active span:first-child{transform:rotate(45deg) translate(6px,6px)}
+.mobile-menu-toggle.active span:nth-child(2){opacity:0}
+.mobile-menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+
+@media (max-width:768px){
+  /* En móvil, el .nav-left ahora solo contiene el logo, porque .nav-menu se oculta. ¡Perfecto! */
+  .nav-menu{position:fixed;top:70px;left:0;right:0;background:#fff;flex-direction:column;padding:2rem;gap:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,.1);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .3s ease}
+  .nav-menu.active{transform:translateY(0);opacity:1;visibility:visible}
+  
+  /* Se ocultan los botones de la derecha y los enlaces del menú */
+  .nav-actions {display:none} 
+  .nav-left .nav-menu {display: none;} /* Doble seguridad para ocultar el menú en escritorio */
+  
+  /* Se muestra el botón hamburguesa */
+  .mobile-menu-toggle{display:flex}
+  .nav-content{padding:0 15px}
+}
+@media (max-width:480px){
+  .logo{font-size:1.3rem}
+  .nav-menu{top:65px;padding:1.5rem}
+}
