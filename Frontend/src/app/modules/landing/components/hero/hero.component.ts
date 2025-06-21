@@ -7,7 +7,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css']
 })
