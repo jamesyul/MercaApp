@@ -14,3 +14,5 @@ import { HeroComponent } from './components/hero/hero.component';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {}
+
+

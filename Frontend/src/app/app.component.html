@@ -1,9 +1,17 @@
 <!-- src/app/app.component.html -->
-<app-header></app-header>
+@if (authService.isLoggedIn()) {
+  <!-- Si el usuario está logueado, muestra el header del dashboard -->
+  <app-dashboard-header></app-dashboard-header>
+} @else {
+  <!-- Si no, muestra el header de la landing page -->
+  <app-header></app-header>
+}
 
 <main>
-  <!-- El enrutador de Angular renderizará aquí los componentes de cada ruta -->
   <router-outlet></router-outlet>
 </main>
 
-<app-footer></app-footer>
+@if (!authService.isLoggedIn()) {
+  <!-- Mostramos el footer solo si el usuario NO está logueado (en la landing) -->
+  <app-footer></app-footer>
+}

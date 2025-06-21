@@ -1,0 +1,22 @@
+<!-- src/app/modules/dashboard/components/dashboard-header/dashboard-header.component.html -->
+<header class="dashboard-header">
+  <div class="header-content">
+    <!-- Logo -->
+    <a routerLink="/app" class="logo">
+      <span class="logo-text">Plick</span>
+    </a>
+
+    <!-- Search Form -->
+    <form class="search-form" (ngSubmit)="onSearch($event)">
+      <i class="fas fa-search search-icon"></i>
+      <input type="search" class="search-input" placeholder="Busca productos, marcas o categorías...">
+      <button type="submit" class="search-button">Buscar</button>
+    </form>
+
+    <!-- User Profile -->
+    <div class="user-profile">
+      <button (click)="logout()" class="logout-button" title="Cerrar sesión">Logout</button>
+      <img src="https://i.pravatar.cc/40" alt="Avatar de usuario" class="avatar">
+    </div>
+  </div>
+</header>

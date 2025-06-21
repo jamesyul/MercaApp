@@ -19,6 +19,15 @@
         
         <p class="hero-subtitle">Compara miles de productos en los principales supermercados y encuentra siempre el mejor precio para tu cesta.</p>
         
+
+        <!-- ... dentro de .hero-actions -->
+        <div class="hero-actions">
+          <a routerLink="/auth/register" class="hero-btn primary">Empieza a Ahorrar Gratis</a>
+          <a href="#supermarkets" class="hero-btn secondary">Ver Supermercados</a>
+          <!-- BOTÓN TEMPORAL DE PRUEBA -->
+          <button (click)="authService.login()" class="hero-btn primary" style="background-color: #e53e3e;">Simular Login</button>
+        </div>
+        
         <div class="hero-actions">
           <a routerLink="/auth/register" class="hero-btn primary">Empieza a Ahorrar Gratis</a>
           <a href="#supermarkets" class="hero-btn secondary">Ver Supermercados</a>

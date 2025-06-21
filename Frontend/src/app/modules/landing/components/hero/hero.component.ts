@@ -1,7 +1,8 @@
 // src/app/modules/landing/components/hero/hero.component.ts
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, inject, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-hero',
@@ -13,9 +14,11 @@ import { RouterLink } from '@angular/router';
 export class HeroComponent {
   // La lógica de parallax y detección de browser se puede añadir aquí si se desea,
   // pero para una versión inicial limpia, no es estrictamente necesaria.
+  authService = inject(AuthService);
   isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 }
+
