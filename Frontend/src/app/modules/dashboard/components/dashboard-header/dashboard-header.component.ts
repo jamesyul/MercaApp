@@ -11,8 +11,12 @@ import { AuthService } from '../../../../core/services/auth.service';
   styleUrls: ['./dashboard-header.component.css']
 })
 export class DashboardHeaderComponent {
-  authService = inject(AuthService); // Inyectamos el servicio de autenticación
+  authService = inject(AuthService);
+  isDropdownOpen = false; // Estado del desplegable
 
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
   onSearch(event: Event) {
     event.preventDefault();
     const input = (event.target as HTMLFormElement).querySelector('input');

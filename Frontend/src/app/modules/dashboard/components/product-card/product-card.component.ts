@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { Product } from '../../../../core/services/product.service';
 import { CommonModule } from '@angular/common';
+import { ModalService } from '../../../../core/services/modal.service';
 
 @Component({
   selector: 'app-product-card',
@@ -9,10 +11,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
-  @Input() product: any;
-  @Output() viewProduct = new EventEmitter<any>();
+  @Input({ required: true }) product!: Product;
+  modalService = inject(ModalService);
 
-  onViewDetails(): void {
-    this.viewProduct.emit(this.product);
+  openDetails() {
+    this.modalService.openModal(this.product);
   }
 }
+
+
+
+

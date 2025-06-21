@@ -1,9 +1,22 @@
-// src/app/modules/dashboard/pages/dashboard-home/dashboard-home.component.ts
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Product, ProductService } from '../../../../core/services/product.service';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-dashboard-home',
   standalone: true,
-  imports: [],
-  template: `<div class="container" style="padding: 40px 20px;"><h1>Resultados de la Búsqueda</h1><p>Aquí se mostrarán los productos...</p></div>`,
+  imports: [ProductCardComponent, CommonModule],
+  templateUrl: './dashboard-home.component.html',
+  styleUrls: ['./dashboard-home.component.css']
 })
-export class DashboardHomeComponent {}
+export class DashboardHomeComponent {
+  productService = inject(ProductService);
+  products: Product[] = [];
+
+  constructor() {
+    this.productService.getProducts().subscribe(data => {
+      this.products = data;
+    });
+  }
+}

@@ -1,41 +1,24 @@
-<div class="form-wrapper">
-  <div class="form-header">
-    <div class="form-logo">
-      <span class="logo-icon">🛒</span>
-    </div>
-    <h2>Create an account</h2>
-    <p>Start your journey to smart savings!</p>
-  </div>
-
-  <form (ngSubmit)="onRegister()" #registerForm="ngForm" class="auth-form">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter your full name" required ngModel>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required ngModel>
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <div class="password-wrapper">
-        <input [type]="passwordFieldType" id="password" name="password" placeholder="Create a password" required ngModel>
-        <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
-          <i class="fa" [ngClass]="passwordFieldType === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
-        </button>
+<div class="auth-container">
+  <div class="auth-card">
+    <h1 class="auth-title">Crea tu cuenta</h1>
+    <p class="auth-subtitle">Únete a Plick y empieza a comprar de forma inteligente.</p>
+    <form class="auth-form" (ngSubmit)="onRegister($event)">
+      <div class="form-group">
+        <label for="username">Nombre de usuario</label>
+        <input type="text" id="username" placeholder="tu_usuario" required>
       </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid">Create account</button>
-    <button type="button" class="btn btn-secondary">
-      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google icon" />
-      Sign up with Google
-    </button>
-  </form>
-
-  <div class="form-footer">
-    <p>Already have an account? <a routerLink="/auth/login">Log in</a></p>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="tu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="Crea una contraseña segura" required>
+      </div>
+      <button type="submit" class="auth-button">Registrarme</button>
+    </form>
+    <p class="auth-redirect">
+      ¿Ya tienes una cuenta? <a routerLink="/auth/login">Inicia sesión</a>
+    </p>
   </div>
 </div>

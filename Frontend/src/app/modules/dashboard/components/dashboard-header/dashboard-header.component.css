@@ -85,3 +85,21 @@
   background-color: #f3f4f6;
   color: #1f2937;
 }
+/* ... */
+.user-profile { position: relative; /* Necesario para el posicionamiento del dropdown */ }
+.profile-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  width: 200px;
+  padding: 8px 0;
+  border: 1px solid #e5e7eb;
+  z-index: 1100;
+}
+.dropdown-item { display: block; padding: 10px 20px; color: #374151; text-decoration: none; font-size: 0.95rem; }
+.dropdown-item:hover { background: #f3f4f6; }
+.dropdown-item.logout { color: #ef4444; }
+.dropdown-divider { height: 1px; background: #e5e7eb; margin: 8px 0; }

@@ -15,8 +15,17 @@
 
     <!-- User Profile -->
     <div class="user-profile">
-      <button (click)="logout()" class="logout-button" title="Cerrar sesión">Logout</button>
-      <img src="https://i.pravatar.cc/40" alt="Avatar de usuario" class="avatar">
+      <img src="https://i.pravatar.cc/40" alt="Avatar de usuario" class="avatar" (click)="toggleDropdown()">
+
+      @if(isDropdownOpen) {
+        <div class="profile-dropdown">
+          <a href="#" class="dropdown-item">Ver Perfil</a>
+          <a href="#" class="dropdown-item">Favoritos</a>
+          <div class="dropdown-divider"></div>
+          <a (click)="logout()" class="dropdown-item logout">Cerrar Sesión</a>
+        </div>
+      }
     </div>
   </div>
 </header>
+

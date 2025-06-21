@@ -1,17 +1,40 @@
 <!-- src/app/app.component.html -->
+
+<!--
+  BLOQUE DE ENCABEZADO CONDICIONAL
+  Usa la nueva sintaxis @if para comprobar el estado de autenticación.
+  - Si authService.isLoggedIn() es true, renderiza el header del dashboard.
+  - Si es false, renderiza el header estándar de la landing page.
+-->
 @if (authService.isLoggedIn()) {
-  <!-- Si el usuario está logueado, muestra el header del dashboard -->
   <app-dashboard-header></app-dashboard-header>
 } @else {
-  <!-- Si no, muestra el header de la landing page -->
   <app-header></app-header>
 }
 
+<!--
+  CONTENEDOR PRINCIPAL
+  Aquí es donde el enrutador de Angular ("RouterOutlet") inyectará
+  el componente de la página activa (LandingComponent, LoginComponent, DashboardHomeComponent, etc.).
+-->
 <main>
   <router-outlet></router-outlet>
 </main>
 
+<!--
+  BLOQUE DE PIE DE PÁGINA CONDICIONAL
+  Solo mostramos el footer si el usuario NO está logueado,
+  es decir, cuando está en la landing page o en las páginas de login/registro.
+  Esto crea una experiencia de aplicación más limpia en el dashboard.
+-->
 @if (!authService.isLoggedIn()) {
-  <!-- Mostramos el footer solo si el usuario NO está logueado (en la landing) -->
   <app-footer></app-footer>
 }
+
+<!--
+  COMPONENTE DEL MODAL
+  Este componente se incluye aquí, pero inicialmente está oculto por su propio CSS.
+  El ModalService se encargará de mostrarlo u ocultarlo cuando sea necesario.
+  Ponerlo aquí asegura que esté disponible en toda la aplicación.
+-->
+<app-product-detail-modal></app--product-detail-modal>

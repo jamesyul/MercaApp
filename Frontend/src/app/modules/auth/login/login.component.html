@@ -1,44 +1,27 @@
-<div class="form-wrapper">
-  <div class="form-header">
-    <div class="form-logo">
-      <span class="logo-icon">🛒</span>
-    </div>
-    <h2>Log in to your account</h2>
-    <p>Welcome back! Please enter your details.</p>
-  </div>
-
-  <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="auth-form">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required ngModel>
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <div class="password-wrapper">
-        <input [type]="passwordFieldType" id="password" name="password" placeholder="Password" required ngModel>
-        <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
-          <i class="fa" [ngClass]="passwordFieldType === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
-        </button>
+<div class="auth-container">
+  <div class="auth-card">
+    <h1 class="auth-title">Iniciar Sesión</h1>
+    <p class="auth-subtitle">¡Bienvenido de nuevo! Accede para empezar a ahorrar.</p>
+    <form class="auth-form" (ngSubmit)="onLogin($event)">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="tu@email.com" required>
       </div>
-    </div>
-
-    <div class="form-options">
-      <div class="remember-me">
-        <input type="checkbox" id="remember" name="remember" ngModel>
-        <label for="remember">Remember me</label>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="••••••••" required>
       </div>
-      <a routerLink="/auth/forgot-password" class="forgot-link">Forgot password</a>
-    </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Sign in</button>
-    <button type="button" class="btn btn-secondary">
-      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google icon" />
-      Sign in with Google
-    </button>
-  </form>
-
-  <div class="form-footer">
-    <p>Don't have an account? <a routerLink="/auth/register">Sign up</a></p>
+      <div class="form-options">
+        <div class="checkbox-group">
+          <input type="checkbox" id="remember">
+          <label for="remember">Recordarme</label>
+        </div>
+        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+      </div>
+      <button type="submit" class="auth-button">Acceder</button>
+    </form>
+    <p class="auth-redirect">
+      ¿No tienes una cuenta? <a routerLink="/auth/register">Regístrate gratis</a>
+    </p>
   </div>
 </div>

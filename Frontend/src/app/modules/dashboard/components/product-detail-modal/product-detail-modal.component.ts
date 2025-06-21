@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ModalService } from '../../../../core/services/modal.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,15 +10,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./product-detail-modal.component.css']
 })
 export class ProductDetailModalComponent {
-  @Input() product: any;
-  @Output() closeModal = new EventEmitter<void>();
-
-  onClose(): void {
-    this.closeModal.emit();
-  }
-
-  // Previene que el click en el contenido cierre el modal
-  onContentClick(event: MouseEvent): void {
-    event.stopPropagation();
-  }
+  public modalService = inject(ModalService);
+  public showOffersView = false;
 }

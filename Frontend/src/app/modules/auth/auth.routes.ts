@@ -1,17 +1,20 @@
+// src/app/modules/auth/auth.routes.ts
 import { Routes } from '@angular/router';
-import { AuthLayoutComponent } from './layout/auth-layout.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 export const AUTH_ROUTES: Routes = [
   {
-    path: '',
-    component: AuthLayoutComponent, // Este layout envuelve a las demás rutas
-    children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      // Redirige /auth a /auth/login por defecto
-      { path: '', redirectTo: 'login', pathMatch: 'full' }
-    ]
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: '', // Redirige /auth a /auth/login
+    redirectTo: 'login',
+    pathMatch: 'full'
   }
 ];

@@ -1,25 +1,19 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [RouterLink],
   templateUrl: './register.component.html',
-  // Reutiliza los estilos del login
-  styleUrls: ['../login/login.component.css']
+  styleUrls: ['../login/login.component.css'] // Reutilizamos el CSS
 })
 export class RegisterComponent {
-  passwordFieldType: string = 'password';
+  authService = inject(AuthService);
 
-  togglePasswordVisibility(): void {
-    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
-  }
-
-  onRegister(): void {
-    // Aquí irá la lógica para el registro
-    console.log('Register form submitted');
+  onRegister(event: Event) {
+    event.preventDefault();
+    this.authService.login();
   }
 }

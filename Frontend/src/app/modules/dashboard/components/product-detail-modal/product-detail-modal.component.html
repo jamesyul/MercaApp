@@ -1,46 +1,62 @@
-<div class="modal-overlay" (click)="onClose()">
-  <div class="modal-content" (click)="onContentClick($event)">
-    <button class="close-btn" (click)="onClose()"><i class="fas fa-times"></i></button>
-    
-    <div class="product-detail-grid">
-      <!-- Image Gallery -->
-      <div class="product-gallery">
-        <div class="main-image">
-          <img [src]="product.imageUrl" [alt]="product.name">
-        </div>
-        <!-- Thumbnails (simplificado) -->
-        <div class="thumbnails">
-          <img [src]="product.imageUrl" [alt]="product.name" class="active">
-          <img [src]="product.imageUrl" [alt]="product.name">
-          <img [src]="product.imageUrl" [alt]="product.name">
-        </div>
-      </div>
-      
-      <!-- Product Info -->
-      <div class="product-info">
-        <span class="info-brand">{{ product.brand }}</span>
-        <h1>{{ product.name }}</h1>
-        <div class="info-rating">
-          <span class="stars">{{ product.rating }} <i class="fas fa-star"></i></span>
-          <span class="reviews">{{ product.reviews }} reviews</span>
-        </div>
-        
-        <div class="info-price">
-          <span class="final-price">€{{ (product.price * (1 - product.discount / 100)).toFixed(2) }}</span>
-          <span class="original-price" *ngIf="product.discount > 0">€{{ product.price.toFixed(2) }}</span>
-          <span class="discount-badge" *ngIf="product.discount > 0">{{ product.discount }}% OFF</span>
-        </div>
-        
-        <div class="info-colors">
-          <label>Color: <span>Negro</span></label>
-          <div class="color-swatches">
-            <button *ngFor="let color of product.colors" [style.background-color]="color" [class.active]="color === '#000000'"></button>
+@if (modalService.selectedProduct(); as product) {
+  <div class="modal-backdrop" (click)="modalService.closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-button" (click)="modalService.closeModal()"><i class="fas fa-times"></i></button>
+
+      @if(!showOffersView) {
+        <!-- Vista Principal del Producto -->
+        <div class="product-view">
+          <div class="product-gallery">
+            <div class="main-image">
+              <img [src]="product.imageUrl" [alt]="product.name">
+            </div>
+            <!-- Thumbnails irían aquí -->
+          </div>
+          <div class="product-details">
+            <h2>{{ product.name }}</h2>
+            <div class="product-meta">
+              <span>{{ product.brand }}</span>
+              <div class="rating">
+                <i class="fas fa-star"></i> {{ product.rating }} ({{ product.reviews }} reseñas)
+              </div>
+            </div>
+            <div class="price-section">
+              <span class="final-price">€{{ product.price.toFixed(2) }}</span>
+              @if(product.oldPrice) {
+                <span class="original-price">€{{ product.oldPrice.toFixed(2) }}</span>
+              }
+            </div>
+            <div class="cta-section">
+              <button class="main-cta" (click)="showOffersView = true">Ver Ofertas</button>
+              <span class="more-deals-link" (click)="showOffersView = true">
+                {{ product.offers.length }} más ofertas <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+            <div class="summary-section">
+              <h3>Resumen</h3>
+              <p>{{ product.summary }}</p>
+            </div>
           </div>
         </div>
-        
-        <button class="btn-primary">Ver oferta en Amazon</button>
-        <a href="#" class="more-deals-link">Ver más ofertas ></a>
-      </div>
+      } @else {
+        <!-- Vista de Ofertas -->
+        <div class="offers-view">
+          <button class="back-button" (click)="showOffersView = false"><i class="fas fa-chevron-left"></i> Volver</button>
+          <h3>Ofertas disponibles para {{ product.name }}</h3>
+          <ul class="offers-list">
+            @for (offer of product.offers; track offer.supermarket) {
+              <li class="offer-item">
+                <img [src]="offer.supermarketLogo" [alt]="offer.supermarket" class="supermarket-logo">
+                <div class="offer-details">
+                  <span class="shipping-info">{{ offer.shipping }}</span>
+                  <span class="offer-price">€{{ offer.price.toFixed(2) }}</span>
+                </div>
+                <a href="#" class="offer-cta">Ver Oferta</a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
     </div>
   </div>
-</div>
+}
