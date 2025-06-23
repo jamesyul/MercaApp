@@ -34,18 +34,19 @@ export class AuthService {
   }
 
   login(credentials: any) {
+    // AÑADIMOS "return" para devolver el Observable
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap(response => {
         if (this.isBrowser) {
           localStorage.setItem('plick_auth_token', response.access_token);
         }
-        this.isLoggedIn.set(true);
-        this.currentUser.set(response.user); // Asumiendo que el login devuelve el user
+        // Suponiendo que tu API de login devuelve el usuario junto con el token
+        // Si no, necesitaremos otra llamada a /user
+        this.checkTokenOnLoad(); // Vuelve a verificar el token y actualiza el estado
         this.router.navigate(['/app']);
       })
     );
   }
-
   logout() {
     this.http.post(`${this.apiUrl}/logout`, {}).subscribe(() => {
       if (this.isBrowser) localStorage.removeItem('plick_auth_token');

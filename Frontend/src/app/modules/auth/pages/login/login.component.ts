@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http'; // <-- AÑADIR ESTA IMPORTACIÓN
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,16 @@ export class LoginComponent {
     contrasena: ['', [Validators.required]]
   });
 
-  onLogin() {
+  onLogin() { // <-- Quitamos el parámetro "event"
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
-        next: () => console.log('Login exitoso!'),
-        error: (err) => alert('Error en el login: ' + err.error.message)
+        next: () => console.log('Login exitoso! Redirigiendo...'),
+        // Tipamos "err" para solucionar el error de 'any' implícito
+        error: (err: HttpErrorResponse) => {
+          console.error('Error en el login:', err);
+          // Mostramos el mensaje de error que viene de Laravel
+          alert('Error en el login: ' + (err.error?.message || 'Credenciales incorrectas.'));
+        }
       });
     }
   }

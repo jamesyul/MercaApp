@@ -2,7 +2,7 @@
   <div class="auth-card">
     <h1 class="auth-title">Iniciar Sesión</h1>
     <p class="auth-subtitle">¡Bienvenido de nuevo! Accede para empezar a ahorrar.</p>
-    <form class="auth-form" (ngSubmit)="onLogin($event)">
+    <form [formGroup]="loginForm" class="auth-form" (ngSubmit)="onLogin()">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="tu@email.com" required>

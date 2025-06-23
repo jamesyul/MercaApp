@@ -1,19 +1,24 @@
 // src/app/core/services/modal.service.ts
 import { Injectable, signal } from '@angular/core';
-import { Product } from './product.service';
+import { Product, ProductService } from './product.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ModalService {
-  // Una señal que contiene el producto a mostrar, o null si el modal está cerrado.
-  selectedProduct = signal<Product | null>(null);
+  productService = inject(ProductService);
+  selectedProductDetails = signal<any | null>(null);
 
+  // Ahora recibe un objeto Product
   openModal(product: Product) {
-    this.selectedProduct.set(product);
+    // Primero, mostramos la info que ya tenemos
+    this.selectedProductDetails.set(product);
+    
+    // Luego, en segundo plano, buscamos los detalles completos (ofertas)
+    this.productService.getProductDetails(product.brand, product.name).subscribe(details => {
+      this.selectedProductDetails.set(details);
+    });
   }
 
   closeModal() {
-    this.selectedProduct.set(null);
+    this.selectedProductDetails.set(null);
   }
 }
