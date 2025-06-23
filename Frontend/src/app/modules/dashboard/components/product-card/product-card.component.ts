@@ -15,7 +15,10 @@ export class ProductCardComponent {
   modalService = inject(ModalService);
 
   openDetails() {
-    this.modalService.openModal(this.product);
+    // Ahora pasamos la info necesaria para la llamada a la API
+    this.modalService.openModal(this.product.brand, this.product.name);
   }
 }
+
+
 
