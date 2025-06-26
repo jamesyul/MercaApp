@@ -20,5 +20,17 @@ export class HeroComponent {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
+
+    // NUEVO MÉTODO
+  simulateLogin() {
+    const fakeCredentials = {
+      correo: 'test@plick.es', // Usa un correo que exista en tu BD para que la API responda bien
+      contrasena: 'password123'  // La contraseña que corresponda
+    };
+    this.authService.login(fakeCredentials).subscribe({
+      next: () => console.log('Simulación de login exitosa.'),
+      error: (err) => console.error('Fallo en la simulación de login', err)
+    });
+  }
 }
 

@@ -1,21 +1,30 @@
 // src/app/core/services/modal.service.ts
-import { Injectable, signal } from '@angular/core';
-import { Product, ProductService } from './product.service';
+import { Injectable, signal, inject } from '@angular/core';
+// Importamos TODAS las interfaces que necesitamos
+import { ProductListItem, ProductDetail, ProductService } from './product.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class ModalService {
   productService = inject(ProductService);
-  selectedProductDetails = signal<any | null>(null);
+  // La señal ahora almacenará un ProductDetail, o null
+  selectedProductDetails = signal<ProductDetail | null>(null);
 
-  // Ahora recibe un objeto Product
-  openModal(product: Product) {
-    // Primero, mostramos la info que ya tenemos
-    this.selectedProductDetails.set(product);
+  /**
+   * Abre el modal. Recibe la información básica de la tarjeta
+   * y luego busca los detalles completos en la API.
+   * @param productListItem La información del producto desde la tarjeta en la que se hizo clic.
+   */
+  openModal(productListItem: ProductListItem) {
+    // Primero, podemos mostrar una versión básica en el modal si quisiéramos (opcional).
+    // O simplemente esperamos la respuesta de la API.
     
-    // Luego, en segundo plano, buscamos los detalles completos (ofertas)
-    this.productService.getProductDetails(product.brand, product.name).subscribe(details => {
-      this.selectedProductDetails.set(details);
-    });
+    this.productService.getProductDetails(productListItem.brand, productListItem.name)
+      .subscribe((details: ProductDetail) => {
+        // Cuando la API responde, actualizamos la señal con los detalles completos.
+        this.selectedProductDetails.set(details);
+      });
   }
 
   closeModal() {

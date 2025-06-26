@@ -14,6 +14,12 @@ export class RegisterComponent {
 
   onRegister(event: Event) {
     event.preventDefault();
-    this.authService.login();
+    // TODO: Aquí llamarías a authService.register() con los datos del formulario.
+    // Por ahora, simulamos un login para probar el flujo.
+    const fakeCredentials = {
+      correo: 'test@plick.es',
+      contrasena: 'password123'
+    };
+    this.authService.login(fakeCredentials).subscribe();
   }
 }

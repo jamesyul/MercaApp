@@ -1,4 +1,4 @@
-@if (modalService.selectedProduct(); as product) {
+@if (modalService.selectedProductDetails(); as product) {
   <div class="modal-backdrop" (click)="modalService.closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <button class="close-button" (click)="modalService.closeModal()"><i class="fas fa-times"></i></button>

@@ -1,5 +1,7 @@
+// src/app/modules/dashboard/components/product-card/product-card.component.ts
 import { Component, Input, inject } from '@angular/core';
-import { Product } from '../../../../core/services/product.service';
+// Cambiamos la importación para usar la nueva interfaz
+import { ProductListItem } from '../../../../core/services/product.service';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../../../core/services/modal.service';
 
@@ -11,13 +13,11 @@ import { ModalService } from '../../../../core/services/modal.service';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
-  @Input({ required: true }) product!: Product;
+  // El Input ahora espera un ProductListItem
+  @Input({ required: true }) product!: ProductListItem;
   modalService = inject(ModalService);
 
   openDetails() {
-    this.modalService.openModal(this.product); // Pasamos el objeto entero
+    this.modalService.openModal(this.product);
   }
 }
-
-
-

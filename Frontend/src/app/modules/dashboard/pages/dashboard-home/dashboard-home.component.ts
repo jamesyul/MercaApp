@@ -1,5 +1,7 @@
+// src/app/modules/dashboard/pages/dashboard-home/dashboard-home.component.ts
 import { Component, inject } from '@angular/core';
-import { Product, ProductService } from '../../../../core/services/product.service';
+// Cambiamos la importación para usar la nueva interfaz
+import { ProductListItem, ProductService } from '../../../../core/services/product.service';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { CommonModule } from '@angular/common';
 
@@ -12,7 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardHomeComponent {
   productService = inject(ProductService);
-  products: Product[] = [];
+  // La propiedad ahora es de tipo ProductListItem[]
+  products: ProductListItem[] = [];
 
   constructor() {
     this.productService.getProducts().subscribe(data => {
