@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 /**
  * Interfaz para la vista de lista/cuadrícula de productos.
  * Coincide con la respuesta de tu API en GET /api/products.
+ * ¡AÑADIMOS LOS CAMPOS QUE FALTABAN!
  */
 export interface ProductListItem {
   id: number;
@@ -14,11 +15,15 @@ export interface ProductListItem {
   brand: string;
   imageUrl: string;
   price: number; // El precio más bajo encontrado
+  oldPrice?: number; // Opcional
+  discount?: number; // Opcional
+  rating?: number;   // Opcional
 }
 
 /**
  * Interfaz para la vista de detalle de un producto (Modal).
  * Coincide con la respuesta de tu API en GET /api/products/details/{brand}/{name}.
+ * ¡AÑADIMOS LOS CAMPOS QUE FALTABAN!
  */
 export interface ProductDetail {
   id: number;
@@ -27,6 +32,10 @@ export interface ProductDetail {
   imageUrl: string;
   summary: string;
   offers: ProductOffer[];
+  price?: number;      // El precio más bajo (para mostrarlo fácilmente)
+  oldPrice?: number;   // El precio original más alto (para comparación)
+  rating?: number;     // Opcional
+  reviews?: number;    // Opcional
 }
 
 /**
@@ -37,7 +46,7 @@ export interface ProductOffer {
   price: number;
   shipping: string;
   url: string;
-  supermarketLogo?: string; // Opcional por ahora
+  supermarketLogo?: string;
 }
 
 
@@ -50,18 +59,10 @@ export class ProductService {
 
   constructor() { }
 
-  /**
-   * Obtiene la lista de productos agrupados con su precio más bajo.
-   * Llama a: GET /api/products
-   */
   getProducts(): Observable<ProductListItem[]> {
     return this.http.get<ProductListItem[]>(`${this.apiUrl}/products`);
   }
 
-  /**
-   * Obtiene los detalles y todas las ofertas de un producto específico.
-   * Llama a: GET /api/products/details/{brand}/{name}
-   */
   getProductDetails(brand: string, name: string): Observable<ProductDetail> {
     const encodedBrand = encodeURIComponent(brand);
     const encodedName = encodeURIComponent(name);

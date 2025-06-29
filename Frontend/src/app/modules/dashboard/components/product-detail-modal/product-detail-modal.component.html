@@ -21,9 +21,13 @@
               </div>
             </div>
             <div class="price-section">
-              <span class="final-price">€{{ product.price.toFixed(2) }}</span>
-              @if(product.oldPrice) {
-                <span class="original-price">€{{ product.oldPrice.toFixed(2) }}</span>
+              @if (product.price) {
+                <span class="final-price">€{{ product.price.toFixed(2) }}</span>
+              }
+
+              @if (product.oldPrice) {
+                <!-- Usamos el operador de navegación segura por si acaso, aunque el @if ya protege -->
+                <span class="original-price">€{{ product.oldPrice?.toFixed(2) }}</span>
               }
             </div>
             <div class="cta-section">
